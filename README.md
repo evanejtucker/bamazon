@@ -1,5 +1,6 @@
 # Bamazon
-its just like amazon... but totally different,
+its just like amazon...but totally different,
+
 a node terminal app that allows a user to interact with a sql database to make purchases, add inventory, productss, and departments.
 
 ## Prerequesites
@@ -8,7 +9,7 @@ a node terminal app that allows a user to interact with a sql database to make p
 * [mySQL Community Server](https://dev.mysql.com/downloads/mysql/)
 * [mySQL workbench](https://dev.mysql.com/downloads/workbench/?aktime=1383874389) (Windows or Mac),  [Sequel Pro](https://www.sequelpro.com/) (Mac) [HeidiSQL](https://www.heidisql.com/) (Windows) or a preferred SQL GUI
 
-## Instructions 
+## Setup 
 1. navigate to a directory in a terminal where you would like to clone the repository
 2. Clone the repo to your machine
    * `git clone https://github.com/evanejtucker/bamazon.git`
@@ -33,3 +34,13 @@ the Customer view allows users to see the products for sale, select one to purch
 * If there is an insufficient quantity in the db, the app will prompt the user to select a new quantity.
    
 ![Demo](./customer-demo.gif)
+
+### Built With
+
+* node
+* sql
+* javascript
+
+## Authors
+
+* Evan E J Tucker
