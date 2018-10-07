@@ -33,7 +33,7 @@ module.exports = function (inquirer, connection, cTable) {
         ]).then(answers => {
             inStock(products, answers);
         });     
-    }
+    },
 
     // checks to see if there is enough stock_quantity to make the purchase
     inStock = (products, answers) => {
@@ -48,7 +48,7 @@ module.exports = function (inquirer, connection, cTable) {
                 return anotherPurchase();
             }
         }
-    }
+    },
 
     // function to update the database after a purchase
     makePurchase = (product, quantity) => {
@@ -62,7 +62,7 @@ module.exports = function (inquirer, connection, cTable) {
             console.log(`Congratulations!! \nYou are now the proud owner of ${quantity} new ${productName}'s for the low low price of ${salesPrice} dollars!\n`);
             anotherPurchase();
         });
-    }
+    },
 
     // give the user the rerun teh purchase function, or end the connection
     anotherPurchase = () => {
@@ -80,10 +80,10 @@ module.exports = function (inquirer, connection, cTable) {
                 });
             } else {
                 console.log('Thanks for shopping! \nCome back again soon!');
-                connection.end()
+                openShop();
             }
         });   
-    }
+    },
 
     // function to filter the products array adn display a table
     customerTable = (products)=> {
@@ -102,5 +102,4 @@ module.exports = function (inquirer, connection, cTable) {
 
         console.table(filteredProducts);
     }
-
 };

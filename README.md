@@ -35,6 +35,9 @@ the Customer view allows users to see the products for sale, select one to purch
    
 ![Demo](./customer-demo.gif)
 
+## Manager View
+The manager view allows the user to check or add product inventory, and add or delete products to the database.
+
 ### Built With
 
 * node
