@@ -6,7 +6,9 @@ const cTable = require('console.table');
 const connection = require("./connection.js");
 
 require('./customerView.js')(inquirer, connection, cTable);
-require('./managerView.js')(inquirer, connection, cTable);  
+require('./managerView.js')(inquirer, connection, cTable);
+require('./supervisorView.js')(inquirer, connection, cTable);  
+
 
 openShop = () => {
     connection.query('SELECT * from products', function (err, res) {
@@ -38,12 +40,11 @@ bamazonOptions = products => {
                     managerView();
                     break;
                 case 'Supervisor':
-                    console.log('Supervisor View... is currently under construction');
-                    console.log('Please try again later');
-                    bamazonOptions(products)
+                    console.log('Supervisor View...');
+                    supervisorView();
                     break;
                 case 'Exit':
-                    console.log('Thanks for stopping by!');
+                    console.log('\nThanks for stopping by!\n');
                     connection.end();
             }
         });

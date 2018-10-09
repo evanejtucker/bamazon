@@ -28,7 +28,7 @@ module.exports = function (inquirer, connection, cTable) {
                     addInventory(products);
                     break;
                 case 'Add new product':
-                    addProduct(products)
+                    addProduct()
                     break;
                 case 'Delete a product':
                     deleteProduct(products)
@@ -95,13 +95,17 @@ module.exports = function (inquirer, connection, cTable) {
     }
 
     // allows user to add a product to the table
-    addProduct = (products)=> {
+    addProduct = ()=> {
+
         departmentArray = [];
-        for(var i=0; i<products.length; i++) {
-            if (!departmentArray.includes(products[i].department_name)) {
-                departmentArray.push(products[i].department_name);
-            }     
-        }
+
+        connection.query("SELECT * FROM departments", function(err, res) {
+            if (err) throw err;
+            for(var i=0; i<res.length; i++) {
+                departmentArray.push(res[i].department_name);     
+            }
+        });
+
         inquirer.prompt([
             {
                 type: 'input',
@@ -155,13 +159,19 @@ module.exports = function (inquirer, connection, cTable) {
     // allows user to delete specific product from the table
     deleteProduct = (products)=> {
         console.table(products);
+
+        let idArray = [];
+        for (var i=0; i<products.length; i++) {
+            idArray.push(products[i].item_id);
+        }
+
         inquirer.prompt([
             {
                 type: "input",
                 name: "id",
                 message: "Select the ID for the product you would like to delete.",
                 validate: (input)=> {
-                    if(!isNaN(input)) {
+                    if(!isNaN(input)  && idArray.includes(parseInt(input))) {
                         return true;
                     }
                     console.log(': Please select a valid ID');
@@ -204,8 +214,7 @@ module.exports = function (inquirer, connection, cTable) {
                 console.log('\nthanks for coming by!\n');
                 openShop();
             }
-        });
-        
+        });   
     }
 
 }
